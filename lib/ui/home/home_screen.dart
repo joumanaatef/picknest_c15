@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:picknest/ui/home/tabs/explore/explore_tab.dart';
+import 'package:picknest/ui/home/tabs/explore/category_woman.dart';
+import 'package:picknest/ui/home/tabs/explore/shop_now/product_shoes.dart';
 import 'package:picknest/ui/home/tabs/fav/fav_tab.dart';
 import 'package:picknest/ui/home/tabs/home_tab/home_tab.dart';
 import 'package:picknest/ui/home/tabs/profile/profile_tab.dart';
@@ -13,52 +14,46 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex=0;
   List<Widget>tabs=[
-    HomeTab(),ExploreTab(),FavTab(),ProfileTab()
+    HomeTab(),ExploreTab(),FavTab(),ProfileTab(),
   ];
   @override
   Widget build(BuildContext context) {
     var height=MediaQuery.of(context).size.height;
     var width=MediaQuery.of(context).size.width;
     return Scaffold(
-      bottomNavigationBar:Padding(
-        padding:EdgeInsets.symmetric(
-            horizontal: width*0.04,
-            vertical: height*0.01
-        ),
-        child: BottomNavigationBar(
-            backgroundColor: AppColors.greenColor,
-            type: BottomNavigationBarType.fixed,
-            currentIndex:selectedIndex ,
-            onTap: (index){
-              selectedIndex=index;
-              setState(() {
+      bottomNavigationBar:BottomNavigationBar(
+          backgroundColor: AppColors.greenColor,
+          type: BottomNavigationBarType.fixed,
+          currentIndex:selectedIndex ,
+          onTap: (index){
+            selectedIndex=index;
+            setState(() {
 
-              });
-            },
-            items:[
-              builtBottomNavigationBarItem(
-                index:0,
-                selectedIconName:AppAssets.iconHomeSelected,
-                unSelectedIconName: AppAssets.iconHomeUnselected,
+            });
+          },
+          items:[
+            builtBottomNavigationBarItem(
+              index:0,
+              selectedIconName:AppAssets.iconHomeSelected,
+              unSelectedIconName: AppAssets.iconHomeUnselected,
 
-              ),
-              builtBottomNavigationBarItem(
-                index:1,
-                selectedIconName:AppAssets.iconExploreSelected,
-                unSelectedIconName: AppAssets.iconExploreUnselected,
-              ),
-              builtBottomNavigationBarItem(
-                index:2,
-                selectedIconName:AppAssets.iconFavSelected,
-                unSelectedIconName: AppAssets.iconFavUnselected,
-              ),
-              builtBottomNavigationBarItem(
-                index:3,
-                selectedIconName:AppAssets.iconProfileSelected,
-                unSelectedIconName: AppAssets.iconProfileUnselected,
-              ),
-            ]
-        ),
+            ),
+            builtBottomNavigationBarItem(
+              index:1,
+              selectedIconName:AppAssets.iconExploreSelected,
+              unSelectedIconName: AppAssets.iconExploreUnselected,
+            ),
+            builtBottomNavigationBarItem(
+              index:2,
+              selectedIconName:AppAssets.iconFavSelected,
+              unSelectedIconName: AppAssets.iconFavUnselected,
+            ),
+            builtBottomNavigationBarItem(
+              index:3,
+              selectedIconName:AppAssets.iconProfileSelected,
+              unSelectedIconName: AppAssets.iconProfileUnselected,
+            ),
+          ]
       ),
       body: tabs[selectedIndex],
     );

@@ -55,7 +55,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           curve: Curves.easeInOut);
     }
   }
-  void backButton() {
+  void backButton(){
     if (currentIndex > 0) {
       pageController.previousPage(
           duration: const Duration(milliseconds: 300),
@@ -63,6 +63,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     }
   }
   void finishButton() {
-    Navigator.pushReplacementNamed(context, AppRoutes.homeScreen);
+    Navigator.pushReplacementNamed(context, AppRoutes.loginScreen);
   }
 }

@@ -21,14 +21,14 @@ OnBoardingItemWidget({
       children: [
         Text(
           onBoardingData.title,
-          style:AppStyles.bold24White,
+          style:AppStyles.bold22White,
           textAlign: TextAlign.center,
         ),
         if (onBoardingData.description.isNotEmpty)
           Text(
             onBoardingData.description,
             textAlign: TextAlign.center,
-            style:AppStyles.regular20White
+            style:AppStyles.regular18Blue
           ),
      SizedBox(height: height*0.02),
     if (onBoardingData.primaryText != null && onBoardingData.secondaryText == null)

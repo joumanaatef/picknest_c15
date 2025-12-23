@@ -5,6 +5,11 @@ import 'onBoarding_data.dart';
 import 'onBoarding_item_widget.dart';
 
 class OnBoardingPage extends StatelessWidget {
+  final OnBoardingData onBoardingData;
+  final VoidCallback? onNext;
+  final VoidCallback? onBack;
+  final VoidCallback? onFinish;
+
   const OnBoardingPage({super.key,
     required this.onBoardingData ,
     this.onNext,
@@ -12,10 +17,7 @@ class OnBoardingPage extends StatelessWidget {
     this.onFinish,
   });
 
-  final OnBoardingData onBoardingData;
-  final VoidCallback? onNext;
-  final VoidCallback? onBack;
-  final VoidCallback? onFinish;
+
   @override
   Widget build(BuildContext context) {
     var height=MediaQuery.of(context).size.height;
