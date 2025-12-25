@@ -1,101 +1,191 @@
 import 'package:flutter/material.dart';
+import 'package:picknest/utils/app_assets.dart';
+import 'package:picknest/utils/app_routes.dart';
 
-class HomeTab extends StatelessWidget {
-  const HomeTab({super.key});
+class HomeTab extends StatefulWidget {
+const HomeTab({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: const Color(0xFFF6EFEA),
+@override
+State<HomeTab> createState() => _HomeTabState();
+}
 
-    /// Header
-    appBar: PreferredSize(
-    preferredSize: const Size.fromHeight(130),
-    child: SafeArea(
-    child: Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-    child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-    const Text(
-    "PickNest",
-    style: TextStyle(
-    fontSize: 26,
-    fontWeight: FontWeight.bold,
-    fontStyle: FontStyle.italic,
-    color: Color(0xFF0C4B3A),
-    ),
-    ),
+class _HomeTabState extends State<HomeTab> {
+@override
+Widget build(BuildContext context) {
+var height = MediaQuery.of(context).size.height;
+var width = MediaQuery.of(context).size.width;
 
-    const SizedBox(height: 12),
+return Scaffold(
+appBar: AppBar(
+backgroundColor: Colors.transparent,
+elevation: 0,
+title: Container(
+height: height * 0.055,
+padding: EdgeInsets.symmetric(horizontal: width * 0.03),
+decoration: BoxDecoration(
+color: const Color(0xFFF0E7E5),
+borderRadius: BorderRadius.circular(20),
+border: Border.all(color: const Color(0xFF929292), width: 1),
+),
+child: Row(
+children: const [
+Icon(Icons.search, color: Color(0xFF02412F)),
+SizedBox(width: 25),
+Text(
+'what do you search for?',
+style: TextStyle(color: Color(0xFF929292), fontSize: 16),
+),
+],
+),
+),
+centerTitle: true,
+actions: const [
+Padding(
+padding: EdgeInsets.all(10.0),
+child: Icon(
+Icons.shopping_cart_outlined,
+color: Color(0xFF02412F),
+),
+),
+],
+),
+body: Padding(
+  padding: const EdgeInsets.all(16.0),
+  child: SingleChildScrollView(
+  child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+  SizedBox(
+  height: height * 0.28,
+  width: double.infinity,
+  child: Image.asset(
+  AppAssets.picknestImg,
+  fit: BoxFit.fill,
+  ),
+  ),
+  SizedBox(height: height * 0.025),
+  Row(
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  children: [
+  const Text(
+  'Categories',
+  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+  ),
+  TextButton(
+  onPressed: () {},
+  style: TextButton.styleFrom(
+  foregroundColor: Colors.black,
+  textStyle: const TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.bold,
+  ),
+  ),
+  child: const Text('View all'),
+  ),
+  ],
+  ),
+  SizedBox(height: height * 0.01),
+  GridView.count(
+  shrinkWrap: true,
+  physics: const NeverScrollableScrollPhysics(),
+  crossAxisCount: 4,
+  padding: EdgeInsets.symmetric(horizontal: width * 0.012),
+  mainAxisSpacing: height * 0.015,
+  crossAxisSpacing: width * 0.015,
+  childAspectRatio: 0.9,
+  children: [
+  _buildCategory('Wom Fashion', AppAssets.homeImg1, width),
+  _buildCategory('Men Fashion', AppAssets.homeImg2, width),
+  _buildCategory('Laptops', AppAssets.homeImg3, width),
+  _buildCategory('Baby & Toys', AppAssets.homeImg2, width),
+  _buildCategory('Beauty', AppAssets.homeImg4, width),
+  _buildCategory('Headphones', AppAssets.homeImg5, width),
+  _buildCategory('SkinCare', AppAssets.homeImg6, width),
+  _buildCategory('Cameras', AppAssets.homeImg3, width),
+  ],
+  ),
+  SizedBox(height: height * 0.01),
+  Padding(
+  padding: EdgeInsets.symmetric(horizontal: width * 0.03),
+  child: const Text(
+  'Home Appliance',
+  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+  ),
+  ),
+  SizedBox(height: height * 0.01),
+  SizedBox(
+  height: height * 0.73,
+  child: ListView(
+  scrollDirection: Axis.horizontal,
+  padding: EdgeInsets.symmetric(horizontal: width * 0.04),
+  children: [
+  _buildProduct(AppAssets.homeImg7, width),
+  _buildProduct(AppAssets.homeImg9, width),
+  _buildProduct(AppAssets.homeImg8, width),
+  ],
+  ),
+  ),
+  SizedBox(height: height * 0.03),
+  ],
+  ),
+  ),
+),
+);
+}
 
-    /// Search + Cart
-    Row(
-    children: [
-    Expanded(
-    child: Container(
-    height: 45,
-    decoration: BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.circular(25),
-    ),
-    child: const TextField(
-    decoration: InputDecoration(
-    hintText: "what do you search for?",
-    prefixIcon: Icon(Icons.search),
-    border: InputBorder.none,
-    contentPadding:
-    EdgeInsets.symmetric(vertical: 12),
-    ),
-    ),
-    ),
-    ),
+Widget _buildCategory(String title, String imagePath, double width) {
+return Column(
+children: [
+Container(
+width: width * 0.14,
+height: width * 0.14,
+decoration: BoxDecoration(
+borderRadius: BorderRadius.circular(60),
+color: Colors.grey[200],
+image: DecorationImage(
+image: AssetImage(imagePath),
+fit: BoxFit.fill,
+),
+),
+),
+const SizedBox(height: 8),
+Text(
+title,
+textAlign: TextAlign.center,
+style: const TextStyle(fontSize: 13),
+),
+],
+);
+}
 
-    const SizedBox(width: 12),
-
-    Container(
-    height: 45,
-    width: 45,
-    decoration: BoxDecoration(
-    color: const Color(0xFF0C4B3A),
-    borderRadius: BorderRadius.circular(14),
-    ),
-    child: IconButton(
-    icon: const Icon(
-    Icons.shopping_cart_outlined,
-    color: Colors.white,
-    ),
-    onPressed: () {},
-    ),
-    ),
-    ],
-    ),
-    ],
-    ),
-    ),
-    ),
-    ),
-
-    /// Body
-    body: SingleChildScrollView(
-    child: Padding(
-    padding: const EdgeInsets.all(16),
-    child: ClipRRect(
-    borderRadius: BorderRadius.circular(20),
-    child: Container(
-    color: Colors.white,
-    child: ColorFiltered(
-    colorFilter: ColorFilter.mode(
-    Colors.green.withOpacity(0.15),
-    BlendMode.overlay,
-    ),
-    child: Image.asset(
-    'images/pickNest.png',
-    width: double.infinity,
-    fit: BoxFit.contain,
-    ),
-    ),
-    ),
-    ),
-    ),
-    ),);}}
+Widget _buildProduct(String imagePath, double width) {
+return Container(
+width: width * 0.25,
+margin: EdgeInsets.only(right: width * 0.04),
+decoration: BoxDecoration(
+borderRadius: BorderRadius.circular(12),
+image: DecorationImage(
+image: AssetImage(imagePath),
+fit: BoxFit.cover,
+),
+),
+child: Stack(
+children: [
+Positioned(
+top: 8,
+right: 8,
+child: IconButton(
+icon: const Icon(
+Icons.favorite_border_rounded,
+color: Color(0xFF02412F),
+),
+onPressed: () {
+Navigator.pushReplacementNamed(context, AppRoutes.favScreen);
+},
+),
+),
+],
+),
+);
+}
+}

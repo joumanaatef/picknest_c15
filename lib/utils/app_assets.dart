@@ -40,4 +40,5 @@ class AppAssets{
  static const String homeImg7='assets/images/img7_home.png';
  static const String homeImg8='assets/images/img8_home.png';
  static const String homeImg9='assets/images/img9_home.png';
+ static const String picknestImg='assets/images/img_picknest.png';
 }
